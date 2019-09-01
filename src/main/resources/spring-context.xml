@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="dataAccess" class="dao.DataAccessImpl">
+        <constructor-arg name="resourceLocation" value="/Questions.csv"></constructor-arg>
+    </bean>
+    <bean id="question" class="service.QuestionServiceImpl">
+        <constructor-arg name="dataAccess" ref="dataAccess"></constructor-arg>
+    </bean>
+    <bean id="console" class="console.ConsoleImpl">
+        <constructor-arg name="service" ref="question"></constructor-arg>
+    </bean>
+</beans>
