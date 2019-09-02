@@ -4,13 +4,16 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="dataAccess" class="dao.DataAccessImpl">
-        <constructor-arg name="resourceLocation" value="/Questions.csv"></constructor-arg>
+    <bean id="questionDao" class="dao.QuestionDaoImpl">
+        <constructor-arg name="resourceLocation" value="Questions.csv"></constructor-arg>
     </bean>
     <bean id="question" class="service.QuestionServiceImpl">
-        <constructor-arg name="dataAccess" ref="dataAccess"></constructor-arg>
+        <constructor-arg name="questionDao" ref="questionDao"></constructor-arg>
     </bean>
-    <bean id="console" class="console.ConsoleImpl">
+    <bean id="console" class="service.ConsoleService">
+    </bean>
+    <bean id="executor" class="executor.TestingAppImpl">
         <constructor-arg name="service" ref="question"></constructor-arg>
+        <constructor-arg name="consoleService" ref="console"></constructor-arg>
     </bean>
 </beans>
