@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import service.ConsoleService;
 import service.QuestionService;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -17,14 +18,14 @@ public class TestingAppImpl implements TestingApp {
     private int result;
 
     public void start() {
-        Map<Question, String> questionsAndAnswers = service.getQuestionsAndAnswers();
-        Scanner scanner = consoleService.gerConsole();
-        System.out.println("Введите свою фамилию и имя");
-        String name = scanner.next();
-        for (Map.Entry<Question, String> pair: questionsAndAnswers.entrySet()) {
-            System.out.println(pair.getKey().getText());
-            String answer = scanner.next();
-            if (answer.equals(pair.getValue())) {
+        String questionName = "Введите свою фамилию и имя";
+        List<Question> questionsAndAnswers = service.getQuestionsAndAnswers();
+        consoleService.printConsole(questionName);
+        String name = consoleService.readConsole();
+        for (Question q: questionsAndAnswers) {
+            consoleService.printConsole(q.getText());
+            String answer = consoleService.readConsole();
+            if (answer.equals(q.getValidAnswer())) {
                 result++;
             }
         }

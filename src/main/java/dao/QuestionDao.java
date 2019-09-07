@@ -1,8 +1,7 @@
 package dao;
 
-import java.io.IOException;
-import java.util.Map;
+import java.util.List;
 
 public interface QuestionDao {
-    Map<Question, String> getAll();
+    List<Question> getAll();
 }

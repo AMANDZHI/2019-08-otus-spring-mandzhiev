@@ -2,9 +2,8 @@ package service;
 
 import dao.Question;
 
-import java.io.IOException;
-import java.util.Map;
+import java.util.List;
 
 public interface QuestionService {
-    Map<Question, String> getQuestionsAndAnswers();
+    List<Question> getQuestionsAndAnswers();
 }

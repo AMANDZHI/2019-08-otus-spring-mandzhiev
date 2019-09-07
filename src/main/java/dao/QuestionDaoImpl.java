@@ -6,16 +6,14 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 @RequiredArgsConstructor
 public class QuestionDaoImpl implements QuestionDao {
     private final String resourceLocation;
 
-    public Map<Question, String> getAll() {
-        Map<Question, String> map = new HashMap<Question, String>();
+    public List<Question> getAll() {
+        List<Question> questions = new ArrayList<Question>();
         try {
             InputStream inputStream = QuestionDaoImpl.class.getClassLoader().getResourceAsStream(resourceLocation);
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
@@ -24,22 +22,22 @@ public class QuestionDaoImpl implements QuestionDao {
                 Scanner scanner = new Scanner(line);
                 scanner.useDelimiter(",");
                 int index = 0;
-                String key = null;
-                String value;
+                String questionText = null;
+                String answerValid;
                 while (scanner.hasNext()) {
                     if (index == 0) {
-                         key = scanner.next();
+                         questionText = scanner.next();
                          index++;
                     } else {
-                        value = scanner.next();
-                        map.put(new Question(key), value);
+                        answerValid = scanner.next();
+                        questions.add(new Question(questionText, answerValid));
                     }
                 }
             }
-            return map;
+            return questions;
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return map;
+        return questions;
     }
 }

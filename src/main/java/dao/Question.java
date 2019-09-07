@@ -9,4 +9,5 @@ import lombok.Setter;
 @RequiredArgsConstructor
 public class Question {
     private final String text;
+    private final String validAnswer;
 }

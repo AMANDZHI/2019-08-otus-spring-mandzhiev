@@ -1,17 +1,16 @@
 package service;
 
-import dao.QuestionDao;
 import dao.Question;
+import dao.QuestionDao;
 import lombok.RequiredArgsConstructor;
 
-import java.io.IOException;
-import java.util.Map;
+import java.util.List;
 
 @RequiredArgsConstructor
 public class QuestionServiceImpl implements QuestionService {
     private final QuestionDao questionDao;
 
-    public Map<Question, String> getQuestionsAndAnswers() {
+    public List<Question> getQuestionsAndAnswers() {
        return questionDao.getAll();
     }
 }
