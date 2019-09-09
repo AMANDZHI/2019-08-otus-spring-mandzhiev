@@ -10,10 +10,10 @@
     <bean id="question" class="service.QuestionServiceImpl">
         <constructor-arg name="questionDao" ref="questionDao"></constructor-arg>
     </bean>
-    <bean id="console" class="service.ConsoleService">
+    <bean id="ioService" class="service.IOServiceImpl">
     </bean>
     <bean id="executor" class="executor.TestingAppImpl">
         <constructor-arg name="service" ref="question"></constructor-arg>
-        <constructor-arg name="consoleService" ref="console"></constructor-arg>
+        <constructor-arg name="IOServiceImpl" ref="ioService"></constructor-arg>
     </bean>
 </beans>

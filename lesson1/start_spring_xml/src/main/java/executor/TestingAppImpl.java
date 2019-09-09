@@ -3,28 +3,26 @@ package executor;
 import dao.Question;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import service.ConsoleService;
+import service.IOServiceImpl;
 import service.QuestionService;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
 
 @AllArgsConstructor
 @RequiredArgsConstructor
 public class TestingAppImpl implements TestingApp {
     private final QuestionService service;
-    private final ConsoleService consoleService;
+    private final IOServiceImpl IOServiceImpl;
     private int result;
 
     public void start() {
         String questionName = "Введите свою фамилию и имя";
         List<Question> questionsAndAnswers = service.getQuestionsAndAnswers();
-        consoleService.printConsole(questionName);
-        String name = consoleService.readConsole();
+        IOServiceImpl.printString(questionName);
+        String name = IOServiceImpl.readString();
         for (Question q: questionsAndAnswers) {
-            consoleService.printConsole(q.getText());
-            String answer = consoleService.readConsole();
+            IOServiceImpl.printString(q.getText());
+            String answer = IOServiceImpl.readString();
             if (answer.equals(q.getValidAnswer())) {
                 result++;
             }
