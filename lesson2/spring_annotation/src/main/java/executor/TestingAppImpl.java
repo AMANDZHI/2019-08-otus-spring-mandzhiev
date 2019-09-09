@@ -2,42 +2,39 @@ package executor;
 
 import dao.Question;
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
-import service.ConsoleService;
+import service.IOServiceServiceImpl;
 import service.QuestionService;
 
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
-import java.util.Scanner;
 
 @Service
 @AllArgsConstructor
 public class TestingAppImpl implements TestingApp {
     private final QuestionService service;
-    private final ConsoleService consoleService;
+    private final IOServiceServiceImpl ioServiceService;
     private int result;
 
     @Autowired
     private MessageSource messageSource;
 
     @Autowired
-    public TestingAppImpl(QuestionService service, ConsoleService consoleService) {
+    public TestingAppImpl(QuestionService service, IOServiceServiceImpl ioServiceService) {
         this.service = service;
-        this.consoleService = consoleService;
+        this.ioServiceService = ioServiceService;
     }
 
     public void start() {
         String questionName = messageSource.getMessage("question.name", new String[]{}, new Locale("ru", "RU"));
         List<Question> questionsAndAnswers = service.getQuestionsAndAnswers();
-        consoleService.printConsole(questionName);
-        String name = consoleService.readConsole();
+        ioServiceService.printString(questionName);
+        String name = ioServiceService.readString();
         for (Question q: questionsAndAnswers) {
-            consoleService.printConsole(q.getText());
-            String answer = consoleService.readConsole();
+            ioServiceService.printString(q.getText());
+            String answer = ioServiceService.readString();
             if (answer.equals(q.getValidAnswer())) {
                 result++;
             }
