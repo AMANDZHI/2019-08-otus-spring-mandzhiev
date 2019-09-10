@@ -17,6 +17,9 @@ public class TestingAppImpl implements TestingApp {
     private final QuestionService service;
     private final IOServiceServiceImpl ioServiceService;
     private int result;
+    private final String QUESTION = "question";
+    private final String FINAL_TEXT = "finalText";
+    private final Locale RUSSIAN = new Locale("ru", "RU");
 
     @Autowired
     private MessageSource messageSource;
@@ -28,7 +31,7 @@ public class TestingAppImpl implements TestingApp {
     }
 
     public void start() {
-        String questionName = messageSource.getMessage("question.name", new String[]{}, new Locale("ru", "RU"));
+        String questionName = messageSource.getMessage(QUESTION, null, RUSSIAN);
         List<Question> questionsAndAnswers = service.getQuestionsAndAnswers();
         ioServiceService.printString(questionName);
         String name = ioServiceService.readString();
@@ -39,7 +42,7 @@ public class TestingAppImpl implements TestingApp {
                 result++;
             }
         }
-
-        System.out.println(name + ", у вас правильных ответов: " + result);
+        String validText = messageSource.getMessage(FINAL_TEXT, null, Locale.ENGLISH);
+        System.out.println(name + validText + result);
     }
 }
