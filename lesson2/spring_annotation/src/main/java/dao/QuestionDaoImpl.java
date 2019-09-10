@@ -1,6 +1,8 @@
 package dao;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
@@ -9,18 +11,20 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
 
 @Service
 public class QuestionDaoImpl implements QuestionDao {
     private String resourceLocation;
+    private final String FILE = "file";
 
-    public QuestionDaoImpl(@Value("${name.file}") String resourceLocation) {
-        this.resourceLocation = resourceLocation;
-    }
+    @Autowired
+    private MessageSource messageSource;
 
     public List<Question> getAll() {
         List<Question> questions = new ArrayList<Question>();
+        resourceLocation = messageSource.getMessage(FILE, null, Locale.ENGLISH);
         try {
             InputStream inputStream = QuestionDaoImpl.class.getClassLoader().getResourceAsStream(resourceLocation);
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
