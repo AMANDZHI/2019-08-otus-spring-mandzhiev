@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
+import service.LocaleService;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -16,15 +17,19 @@ import java.util.Scanner;
 
 @Service
 public class QuestionDaoImpl implements QuestionDao {
-    private String resourceLocation;
-    private final String FILE = "file";
-
-    @Autowired
+    private String resourceLocation = "Questions.csv";
+    private final LocaleService localeService;
     private MessageSource messageSource;
+
+    public QuestionDaoImpl(LocaleService localeService, MessageSource messageSource) {
+        this.localeService = localeService;
+        this.resourceLocation = localeService.getLocaleProperty() + resourceLocation;
+        this.messageSource = messageSource;
+    }
 
     public List<Question> getAll() {
         List<Question> questions = new ArrayList<Question>();
-        resourceLocation = messageSource.getMessage(FILE, null, Locale.ENGLISH);
+//        resourceLocation = messageSource.getMessage(file, null, localeService.getLocale());
         try {
             InputStream inputStream = QuestionDaoImpl.class.getClassLoader().getResourceAsStream(resourceLocation);
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
