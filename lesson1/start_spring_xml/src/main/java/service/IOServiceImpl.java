@@ -1,17 +1,22 @@
 package service;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.io.PrintStream;
 import java.util.Scanner;
 
 public class IOServiceImpl implements IOService {
+    private Scanner scanner;
+    private PrintStream printStream;
+
+    public IOServiceImpl(Scanner scanner, PrintStream printStream) {
+        this.scanner = scanner;
+        this.printStream = printStream;
+    }
+
     public String readString() {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        Scanner scanner = new Scanner(reader);
         return scanner.next();
     }
 
     public void printString(String object) {
-        System.out.println(object);
+        printStream.println(object);
     }
 }
