@@ -8,7 +8,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 
-@ComponentScan(basePackages = {"dao", "executor", "service"})
+@ComponentScan(basePackages = {"dao", "executor", "service", "util"})
 @Configuration
 @PropertySource("classpath:application.properties")
 @Import(AppConfig.class)

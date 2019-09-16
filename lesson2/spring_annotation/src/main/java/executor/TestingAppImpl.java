@@ -3,15 +3,13 @@ package executor;
 import dao.Question;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 import service.IOServiceServiceImpl;
-import service.LocaleService;
+import util.LocaleProps;
 import service.QuestionService;
 
 import java.util.List;
-import java.util.Locale;
 
 @Service
 @AllArgsConstructor
@@ -21,19 +19,19 @@ public class TestingAppImpl implements TestingApp {
     private int result;
     private final String QUESTION = "question";
     private final String FINAL_TEXT = "finalText";
-    private final LocaleService localeService;
+    private final LocaleProps localeProps;
     private MessageSource messageSource;
 
     @Autowired
-    public TestingAppImpl(QuestionService service, IOServiceServiceImpl ioServiceService, LocaleService localeService, MessageSource messageSource) {
+    public TestingAppImpl(QuestionService service, IOServiceServiceImpl ioServiceService, LocaleProps localeProps, MessageSource messageSource) {
         this.service = service;
         this.ioServiceService = ioServiceService;
-        this.localeService = localeService;
+        this.localeProps = localeProps;
         this.messageSource = messageSource;
     }
 
     public void start() {
-        String questionName = messageSource.getMessage(QUESTION, null, localeService.getLocale());
+        String questionName = messageSource.getMessage(QUESTION, null, localeProps.getLocale());
         List<Question> questionsAndAnswers = service.getQuestionsAndAnswers();
         ioServiceService.printString(questionName);
         String name = ioServiceService.readString();
@@ -44,7 +42,7 @@ public class TestingAppImpl implements TestingApp {
                 result++;
             }
         }
-        String validText = messageSource.getMessage(FINAL_TEXT, null, localeService.getLocale());
+        String validText = messageSource.getMessage(FINAL_TEXT, null, localeProps.getLocale());
         System.out.println(name + validText + result);
     }
 }
