@@ -1,5 +1,6 @@
 package service;
 
+import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 
@@ -7,8 +8,8 @@ public class IOServiceImpl implements IOService {
     private Scanner scanner;
     private PrintStream printStream;
 
-    public IOServiceImpl(Scanner scanner, PrintStream printStream) {
-        this.scanner = scanner;
+    public IOServiceImpl(InputStream inputStream, PrintStream printStream) {
+        this.scanner = new Scanner(inputStream);
         this.printStream = printStream;
     }
 

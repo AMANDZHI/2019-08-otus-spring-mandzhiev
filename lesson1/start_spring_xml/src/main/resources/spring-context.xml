@@ -11,12 +11,10 @@
     </bean>
     <bean id="ioService" class="service.IOServiceImpl">
         <constructor-arg>
-            <util:constant id="scanner"
-                           static-field="service.IOUtil.SCANNER" />
+            <util:constant static-field="java.lang.System.in"></util:constant>
         </constructor-arg>
         <constructor-arg>
-            <util:constant id="printStream"
-                           static-field="service.IOUtil.PRINT_STREAM" />
+            <util:constant static-field="java.lang.System.out"></util:constant>
         </constructor-arg>
     </bean>
     <bean id="executor" class="executor.TestingAppImpl">
