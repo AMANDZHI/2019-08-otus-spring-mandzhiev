@@ -3,7 +3,7 @@ package executor;
 import dao.Question;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import service.IOServiceImpl;
+import service.IOService;
 import service.QuestionService;
 
 import java.util.List;
@@ -12,17 +12,17 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TestingAppImpl implements TestingApp {
     private final QuestionService service;
-    private final IOServiceImpl IOServiceImpl;
+    private final IOService ioService;
     private int result;
 
     public void start() {
         String questionName = "Введите свою фамилию и имя";
         List<Question> questionsAndAnswers = service.getQuestionsAndAnswers();
-        IOServiceImpl.printString(questionName);
-        String name = IOServiceImpl.readString();
+        ioService.printString(questionName);
+        String name = ioService.readString();
         for (Question q: questionsAndAnswers) {
-            IOServiceImpl.printString(q.getText());
-            String answer = IOServiceImpl.readString();
+            ioService.printString(q.getText());
+            String answer = ioService.readString();
             if (answer.equals(q.getValidAnswer())) {
                 result++;
             }

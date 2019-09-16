@@ -22,6 +22,6 @@
     </bean>
     <bean id="executor" class="executor.TestingAppImpl">
         <constructor-arg name="service" ref="question"></constructor-arg>
-        <constructor-arg name="IOServiceImpl" ref="ioService"></constructor-arg>
+        <constructor-arg name="ioService" ref="ioService"></constructor-arg>
     </bean>
 </beans>
