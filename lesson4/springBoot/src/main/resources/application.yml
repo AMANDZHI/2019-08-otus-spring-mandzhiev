@@ -1,2 +1,5 @@
 application:
     language : ru
+
+spring-banner-location:
+    classpath: banner.txt
