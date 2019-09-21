@@ -1,5 +1,9 @@
 application:
-    language : ru
+    language : en
 
 spring-banner-location:
     classpath: banner.txt
+spring:
+    messages:
+        encoding: UTF-8
+        basename: i18n/bundle

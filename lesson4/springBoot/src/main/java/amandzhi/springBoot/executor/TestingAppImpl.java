@@ -3,6 +3,7 @@ package amandzhi.springBoot.executor;
 import amandzhi.springBoot.dao.Question;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 import amandzhi.springBoot.service.IOServiceServiceImpl;
@@ -20,7 +21,7 @@ public class TestingAppImpl implements TestingApp {
     private final String QUESTION = "question";
     private final String FINAL_TEXT = "finalText";
     private final LocaleProps localeProps;
-    private MessageSource messageSource;
+    private final MessageSource messageSource;
 
     @Autowired
     public TestingAppImpl(QuestionService service, IOServiceServiceImpl ioServiceService, LocaleProps localeProps, MessageSource messageSource) {
