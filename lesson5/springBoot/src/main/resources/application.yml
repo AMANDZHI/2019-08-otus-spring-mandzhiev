@@ -1,0 +1,5 @@
+application:
+    language : en
+
+spring-banner-location:
+    classpath: banner.txt

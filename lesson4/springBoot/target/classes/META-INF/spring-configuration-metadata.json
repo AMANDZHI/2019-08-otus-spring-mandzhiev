@@ -1,0 +1,17 @@
+{
+  "groups": [
+    {
+      "name": "application",
+      "type": "amandzhi.springBoot.config.ApplicationSettings",
+      "sourceType": "amandzhi.springBoot.config.ApplicationSettings"
+    }
+  ],
+  "properties": [
+    {
+      "name": "application.language",
+      "type": "java.lang.String",
+      "sourceType": "amandzhi.springBoot.config.ApplicationSettings"
+    }
+  ],
+  "hints": []
+}
