@@ -1,23 +1,21 @@
 package amandzhi.springjdbc.service;
 
 import amandzhi.springjdbc.model.Genre;
-import amandzhi.springjdbc.repository.RepositoryDao;
+import amandzhi.springjdbc.repository.GenreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 
 import java.util.Collection;
-import java.util.Optional;
 
 @org.springframework.stereotype.Service(value = "genreService")
-public class GenreServiceImpl implements Service<Genre> {
+public class GenreServiceImpl implements GenreService<Genre> {
 
-    private RepositoryDao<Genre> genreRepository;
+    private GenreRepository<Genre> genreRepository;
 
     public GenreServiceImpl() {
     }
 
     @Autowired
-    public GenreServiceImpl(@Qualifier("genreRepository") RepositoryDao<Genre> genreRepository) {
+    public GenreServiceImpl(GenreRepository<Genre> genreRepository) {
         this.genreRepository = genreRepository;
     }
 

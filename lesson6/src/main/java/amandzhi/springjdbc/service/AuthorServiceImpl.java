@@ -1,23 +1,21 @@
 package amandzhi.springjdbc.service;
 
 import amandzhi.springjdbc.model.Author;
-import amandzhi.springjdbc.repository.RepositoryDao;
+import amandzhi.springjdbc.repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 
 import java.util.Collection;
-import java.util.Optional;
 
 @org.springframework.stereotype.Service(value = "authorService")
-public class AuthorServiceImpl implements Service<Author> {
+public class AuthorServiceImpl implements AuthorService<Author> {
 
-    private RepositoryDao<Author> authorRepository;
+    private AuthorRepository<Author> authorRepository;
 
     public AuthorServiceImpl() {
     }
 
     @Autowired
-    public AuthorServiceImpl(@Qualifier("authorRepository") RepositoryDao<Author> authorRepository) {
+    public AuthorServiceImpl(AuthorRepository<Author> authorRepository) {
         this.authorRepository = authorRepository;
     }
 

@@ -1,23 +1,21 @@
 package amandzhi.springjdbc.service;
 
 import amandzhi.springjdbc.model.Book;
-import amandzhi.springjdbc.repository.RepositoryDao;
+import amandzhi.springjdbc.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 
 import java.util.Collection;
-import java.util.Optional;
 
 @org.springframework.stereotype.Service(value = "bookService")
-public class BookServiceImpl implements Service<Book> {
+public class BookServiceImpl implements BookService<Book> {
 
-    private RepositoryDao<Book> bookRepository;
+    private BookRepository<Book> bookRepository;
 
     public BookServiceImpl() {
     }
 
     @Autowired
-    public BookServiceImpl(@Qualifier(value = "bookRepository") RepositoryDao<Book> bookRepository) {
+    public BookServiceImpl(BookRepository<Book> bookRepository) {
         this.bookRepository = bookRepository;
     }
 
