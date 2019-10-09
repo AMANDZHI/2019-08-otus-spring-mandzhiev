@@ -7,15 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.Collection;
 
 @org.springframework.stereotype.Service(value = "authorService")
-public class AuthorServiceImpl implements AuthorService<Author> {
+public class AuthorServiceImpl implements AuthorService {
 
-    private AuthorRepository<Author> authorRepository;
+    private AuthorRepository authorRepository;
 
     public AuthorServiceImpl() {
     }
 
     @Autowired
-    public AuthorServiceImpl(AuthorRepository<Author> authorRepository) {
+    public AuthorServiceImpl(AuthorRepository authorRepository) {
         this.authorRepository = authorRepository;
     }
 

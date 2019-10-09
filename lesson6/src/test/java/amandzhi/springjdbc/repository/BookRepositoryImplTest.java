@@ -8,7 +8,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -25,27 +24,27 @@ class BookRepositoryImplTest {
     private BookRepositoryImpl bookRepositoryDao;
 
     @Autowired
-    private AuthorRepository<Author> authorRepository;
+    private AuthorRepository authorRepository;
 
     @Autowired
-    private GenreRepository<Genre> genreRepository;
+    private GenreRepository genreRepository;
 
     @Test
     void insert() {
         Author author = new Author();
-        author.setName("testjamandzhi");
+        author.setName("testamandzhi");
         author.setId(11L);
         Genre genre = new Genre();
         genre.setName("testfantasy");
         genre.setId(11L);
-        Book book = new Book();
-        book.setTitle("newMyBook");
-        book.setAuthor(author);
-        book.setGenre(genre);
+        Book book = new Book(null, "newMyBook", author, genre);
         boolean insert = bookRepositoryDao.insert(book);
         Book findBook = bookRepositoryDao.findByName(book.getTitle());
         Assertions.assertTrue(insert);
         Assertions.assertNotNull(findBook);
+        Assertions.assertEquals(book.getTitle(), findBook.getTitle());
+        Assertions.assertEquals(book.getAuthor(), findBook.getAuthor());
+        Assertions.assertEquals(book.getGenre(), findBook.getGenre());
     }
 
     @Test
@@ -56,11 +55,7 @@ class BookRepositoryImplTest {
         Genre genre = new Genre();
         genre.setName("testfantasy");
         genre.setId(11L);
-        Book book = new Book();
-        book.setId(24L);
-        book.setTitle("newUpdateMyBook");
-        book.setAuthor(author);
-        book.setGenre(genre);
+        Book book = new Book(24L, "newUpdateMyBook", author, genre);
         boolean update = bookRepositoryDao.update(book);
         Book findBook = bookRepositoryDao.findByName(book.getTitle());
         Assertions.assertTrue(update);

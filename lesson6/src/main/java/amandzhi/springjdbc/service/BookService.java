@@ -1,8 +1,10 @@
 package amandzhi.springjdbc.service;
 
+import amandzhi.springjdbc.model.Book;
+
 import java.util.Collection;
 
-public interface BookService<Book> {
+public interface BookService {
     boolean insert(Book entity);
     boolean update(Book entity);
     Book findById(Long id);

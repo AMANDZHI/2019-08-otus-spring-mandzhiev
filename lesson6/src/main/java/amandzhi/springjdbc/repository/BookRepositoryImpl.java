@@ -17,16 +17,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Repository
-public class BookRepositoryImpl implements BookRepository<Book> {
+public class BookRepositoryImpl implements BookRepository {
 
     private final NamedParameterJdbcOperations template;
 
-    private AuthorRepository<Author> authorRepository;
+    private AuthorRepository authorRepository;
 
-    private GenreRepository<Genre> genreRepository;
+    private GenreRepository genreRepository;
 
     @Autowired
-    public BookRepositoryImpl(NamedParameterJdbcOperations template, AuthorRepository<Author> authorRepository, GenreRepository<Genre> genreRepository) {
+    public BookRepositoryImpl(NamedParameterJdbcOperations template, AuthorRepository authorRepository, GenreRepository genreRepository) {
         this.template = template;
         this.authorRepository = authorRepository;
         this.genreRepository = genreRepository;

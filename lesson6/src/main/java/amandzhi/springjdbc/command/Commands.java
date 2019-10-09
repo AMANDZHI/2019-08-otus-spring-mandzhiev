@@ -22,9 +22,9 @@ import java.util.Collection;
 @ShellComponent
 public class Commands {
     private String userName;
-    private GenreService<Genre> genreService;
-    private AuthorService<Author> authorService;
-    private BookService<Book> bookService;
+    private GenreService genreService;
+    private AuthorService authorService;
+    private BookService bookService;
     private IOService iOService;
     private LocaleProps localeProps;
     private MessageSource messageSource;
@@ -41,7 +41,7 @@ public class Commands {
     private final String ENTER_ID_BOOK = "enterIdBook";
 
     @Autowired
-    public Commands(GenreService<Genre> genreService, AuthorService<Author> authorService, BookService<Book> bookService, IOService iOService, LocaleProps localeProps, MessageSource messageSource) {
+    public Commands(GenreService genreService, AuthorService authorService, BookService bookService, IOService iOService, LocaleProps localeProps, MessageSource messageSource) {
         this.genreService = genreService;
         this.authorService = authorService;
         this.bookService = bookService;
@@ -70,12 +70,9 @@ public class Commands {
         String authorName = iOService.readString();
         iOService.printString(messageSource.getMessage(QUESTION_NAME_GENRE, null, localeProps.getLocale()));
         String genreName = iOService.readString();
-        Book book = new Book();
-        book.setTitle(bookTitle);
         Author authorFind = authorService.findByName(authorName);
-        book.setAuthor(authorFind);
         Genre genreFind = genreService.findByName(genreName);
-        book.setGenre(genreFind);
+        Book book = new Book(null, bookTitle, authorFind, genreFind);
         bookService.insert(book);
         iOService.printString(messageSource.getMessage(SUCCESS, null, localeProps.getLocale()));
     }

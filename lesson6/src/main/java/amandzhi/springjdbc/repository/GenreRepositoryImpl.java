@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Repository
-public class GenreRepositoryImpl implements GenreRepository<Genre> {
+public class GenreRepositoryImpl implements GenreRepository {
     @Autowired
     private NamedParameterJdbcOperations template;
 

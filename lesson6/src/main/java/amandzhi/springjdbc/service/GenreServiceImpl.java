@@ -7,15 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.Collection;
 
 @org.springframework.stereotype.Service(value = "genreService")
-public class GenreServiceImpl implements GenreService<Genre> {
+public class GenreServiceImpl implements GenreService {
 
-    private GenreRepository<Genre> genreRepository;
+    private GenreRepository genreRepository;
 
     public GenreServiceImpl() {
     }
 
     @Autowired
-    public GenreServiceImpl(GenreRepository<Genre> genreRepository) {
+    public GenreServiceImpl(GenreRepository genreRepository) {
         this.genreRepository = genreRepository;
     }
 

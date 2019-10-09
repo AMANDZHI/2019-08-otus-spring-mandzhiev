@@ -7,15 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.Collection;
 
 @org.springframework.stereotype.Service(value = "bookService")
-public class BookServiceImpl implements BookService<Book> {
+public class BookServiceImpl implements BookService {
 
-    private BookRepository<Book> bookRepository;
+    private BookRepository bookRepository;
 
     public BookServiceImpl() {
     }
 
     @Autowired
-    public BookServiceImpl(BookRepository<Book> bookRepository) {
+    public BookServiceImpl(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
 

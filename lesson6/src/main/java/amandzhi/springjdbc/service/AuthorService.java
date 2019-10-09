@@ -1,8 +1,10 @@
 package amandzhi.springjdbc.service;
 
+import amandzhi.springjdbc.model.Author;
+
 import java.util.Collection;
 
-public interface AuthorService<Author> {
+public interface AuthorService {
     boolean insert(Author entity);
     boolean update(Author entity);
     Author findById(Long id);

@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Repository
-public class AuthorRepositoryImpl implements AuthorRepository<Author> {
+public class AuthorRepositoryImpl implements AuthorRepository {
 
     @Autowired
     private NamedParameterJdbcOperations template;
