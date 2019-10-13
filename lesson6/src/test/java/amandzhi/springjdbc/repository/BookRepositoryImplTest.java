@@ -34,9 +34,7 @@ class BookRepositoryImplTest {
         Author author = new Author();
         author.setName("testamandzhi");
         author.setId(11L);
-        Genre genre = new Genre();
-        genre.setName("testfantasy");
-        genre.setId(11L);
+        Genre genre = new Genre(11L, "testfantasy");
         Book book = new Book(null, "newMyBook", author, genre);
         boolean insert = bookRepositoryDao.insert(book);
         Book findBook = bookRepositoryDao.findByName(book.getTitle());
@@ -49,12 +47,8 @@ class BookRepositoryImplTest {
 
     @Test
     void update() {
-        Author author = new Author();
-        author.setName("testjamandzhi");
-        author.setId(11L);
-        Genre genre = new Genre();
-        genre.setName("testfantasy");
-        genre.setId(11L);
+        Author author = new Author(11L, "testjamandzhi");
+        Genre genre = new Genre(11L, "testfantasy");;
         Book book = new Book(24L, "newUpdateMyBook", author, genre);
         boolean update = bookRepositoryDao.update(book);
         Book findBook = bookRepositoryDao.findByName(book.getTitle());
